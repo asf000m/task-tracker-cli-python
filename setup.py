@@ -1,10 +1,12 @@
 from setuptools import setup
 
 setup(
-    name = 'extension',
+    name = 'taskcli',
     version = '0.1.0',
-    packages = ['extension'],
+    packages = ['taskcli'],
     entry_points = {
-        'console_scripts' : ['ext = extension.__main__:main']
+        'console_scripts': [
+            'taskcli = taskcli.__main__:main'
+        ]
     }
 )

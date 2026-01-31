@@ -1,3 +1,5 @@
+import sys
+
 def add():
     """ Add a new task """
     return 0
@@ -27,4 +29,15 @@ def listByStatus():
     return 0
 
 def main():
-    
+    print('in main...')
+
+    args = sys.argv[1:]
+
+    print('count of args :: {}'.format(len(args)))
+    for arg in args:
+        print('passed argument :: {}'.format(arg))
+
+    print('Hello world!')
+
+if __name__ == '__main__':
+    main()
