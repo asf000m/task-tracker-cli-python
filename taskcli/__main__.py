@@ -19,6 +19,8 @@ def add(task, description, task_list):
         'updatedAt': now
     }
     
+    print('Task added successfully (ID: ' + new_id + ')')
+    
     return task_list
 
 
