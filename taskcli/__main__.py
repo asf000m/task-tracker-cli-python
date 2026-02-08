@@ -3,14 +3,14 @@ import json
 import datetime
 
 
-def add(task, description, task_list):
+def addTask(task, description, task_dict):
     """ Add a new task to the list"""
 
-    new_id = str(len(task_list) + 1)    # create id number of the new task
+    new_id = str(len(task_dict) + 1)    # create id number of the new task
     now = datetime.datetime.now().strftime('%c')    # set the date and time of the task
 
     # add new task and its properties
-    task_list[new_id] = {
+    task_dict[new_id] = {
         'task': task,
         'id': int(new_id),
         'description': description,
@@ -19,34 +19,49 @@ def add(task, description, task_list):
         'updatedAt': now
     }
     
-    print('Task added successfully (ID: ' + new_id + ')')
+    print('\nTask added successfully (ID: ' + new_id + ')\n')
     
-    return task_list
+    return task_dict
 
 
-def update():
+def updateTask():
     """ Change a task in the list to another """
     return 0
 
 
-def delete():
+def deleteTask(id, task_dict):
     """ Delete a task """
-    return 0
+
+    # first check if the id of the task is in the list of tasks
+    if id in task_dict:
+        task = task_dict[str(id)]['task']
+        task_id = task_dict[str(id)]['id']
+
+        print('\nTask deleted:\n')
+        print(f'{task} (ID: {task_id})\n')
+
+        task_dict.pop(str(id))
+
+        return task_dict
+    else:
+        print('\nTask ID not found.\n')
+        return task_dict
 
 
-def markInProgress():
+def markTaskInProgress():
     """ Mark a task as in progress """
     return 0
 
 
-def markDone():
+def markTaskDone():
     """ Mark a task as done """
     return 0
 
 
-def listAll(task_dict):
+def listAllTasks(task_dict):
     """ List all tasks """
 
+    print('List of all tasks:\n')
     for task_properties in task_dict.values():
         print('Task:\t\t', task_properties['task'])
         print('Description:\t', task_properties['description'])
@@ -80,7 +95,7 @@ def writeFile(file_path, data):
 def main():
 
     file_path = 'test.json'
-    task_dict = readFile(file_path)     # read JSON
+    task_dict = readFile(file_path)  # read JSON
 
     # define the command and arguments
     command = sys.argv[1]
@@ -88,9 +103,12 @@ def main():
 
     # check for a command and execute it
     if command == 'list':
-        listAll(task_dict)
+        listAllTasks(task_dict)
     elif command == 'add':
-        task_dict = add(args[0], args[1], task_dict)
+        task_dict = addTask(args[0], args[1], task_dict)
+        writeFile(file_path, task_dict)
+    elif command == 'delete':
+        task_dict = deleteTask(args[0], task_dict)
         writeFile(file_path, task_dict)
 
 
