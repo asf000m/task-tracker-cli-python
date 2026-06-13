@@ -1,10 +1,12 @@
 import sys
 import json
 import datetime
+from file_handler import *
+
 
 
 def addTask(task, description, task_dict):
-    """ Add a new task to the list"""
+    """ Add a new task to the list. """
 
     new_id = str(len(task_dict) + 1)    # create id number of the new task
     now = datetime.datetime.now().strftime('%c')    # set the date and time of the task
@@ -24,9 +26,11 @@ def addTask(task, description, task_dict):
     return task_dict
 
 
+
 def updateTask():
     """ Change a task in the list to another """
     return 0
+
 
 
 def deleteTask(id, task_dict):
@@ -41,11 +45,11 @@ def deleteTask(id, task_dict):
         print(f'{task} (ID: {task_id})\n')
 
         task_dict.pop(str(id))
-
         return task_dict
     else:
         print('\nTask ID not found.\n')
         return task_dict
+
 
 
 def markTaskInProgress():
@@ -53,9 +57,11 @@ def markTaskInProgress():
     return 0
 
 
+
 def markTaskDone():
     """ Mark a task as done """
     return 0
+
 
 
 def listAllTasks(task_dict):
@@ -70,26 +76,11 @@ def listAllTasks(task_dict):
         print('\n')
 
 
+
 def listByStatus():
     """ List tasks by status """
     return 0
 
-
-def readFile(file_path):
-    """ Handle the reading of the JSON file and convert its content into a
-    dictionary """
-
-    with open(file_path, 'rt') as file:
-        json_to_dict = json.loads(file.read())
-
-    return json_to_dict
-
-
-def writeFile(file_path, data):
-    """ Handle the writing of the JSON file """
-
-    with open(file_path, 'w') as outfile:
-        json.dump(data, outfile)
 
 
 def main():
@@ -110,6 +101,7 @@ def main():
     elif command == 'delete':
         task_dict = deleteTask(args[0], task_dict)
         writeFile(file_path, task_dict)
+
 
 
 if __name__ == '__main__':
