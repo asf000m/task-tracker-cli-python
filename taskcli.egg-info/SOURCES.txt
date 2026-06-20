@@ -2,6 +2,8 @@ README.md
 setup.py
 taskcli/__init__.py
 taskcli/__main__.py
+taskcli/file_handler.py
+taskcli/tests.py
 taskcli.egg-info/PKG-INFO
 taskcli.egg-info/SOURCES.txt
 taskcli.egg-info/dependency_links.txt
