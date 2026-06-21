@@ -1,12 +1,13 @@
 import sys
 import json
 from datetime import datetime
+from pprint import pp
 
 from taskcli import file_handler
 
 
 
-def addTask(task_name, description, tasks):
+def add_task(task_name, description, tasks):
     """ Add a new task to the list. 
     
     Input:
@@ -39,40 +40,47 @@ def addTask(task_name, description, tasks):
 
 
 
-def updateTask():
-    """ Change a task in the list to another """
-    return 0
+def update_task():
+    """ Change a task in the list to another. """
+    pass
 
 
 
-def deleteTask(id, tasks):
-    """ Delete a task """
+def delete_task(id, tasks):
+    """ Delete a task. """
 
-    # first check if the id of the task is in the list of tasks
+    # First check if the ID of the task is in dictionary of tasks.
     if id in tasks:
-        task = tasks[str(id)]['task']
-        task_id = tasks[str(id)]['id']
-
-        print('\nTask deleted:\n')
-        print(f'{task} (ID: {task_id})\n')
-
-        tasks.pop(str(id))
+        name_task = tasks[id]["task_name"]
+        id_task = tasks[id]["id"]
+        print(
+            "Task deleted:\n"
+            f"{name_task} (ID: {id_task})\n"
+        )
+        tasks.pop(id)
+        
         return tasks
     else:
-        print('\nTask ID not found.\n')
+        print(f"Task ID {id} not found.\n")
+        
         return tasks
 
 
 
-def markTaskInProgress():
-    """ Mark a task as in progress """
-    return 0
+def mark_todo():
+    """ Mark a task as todo. """
+    pass
+
+
+def mark_in_progress():
+    """ Mark a task as in progress. """
+    pass
 
 
 
-def markTaskDone():
-    """ Mark a task as done """
-    return 0
+def mark_done():
+    """ Mark a task as done. """
+    pass
 
 
 
@@ -87,7 +95,7 @@ def list_all(tasks):
 
     print('List of all tasks:\n')
 
-    for task in tasks:
+    for task in tasks.values():
         print(
             f"ID:\t\t{task["id"]}\n"
             f"Task:\t\t{task["task_name"]}\n"
@@ -100,7 +108,7 @@ def list_all(tasks):
 
 
 def listByStatus():
-    """ List tasks by status """
+    """ List tasks by status. """
     return 0
 
 
@@ -119,11 +127,16 @@ def main():
         list_all(tasks)
     
     elif command == 'add':
-        addTask(args[0], args[1], tasks)
+        name_task = args[0]
+        desc_task = args[1]
+        
+        tasks = add_task(name_task, desc_task, tasks)
         file_handler.write_file(file_path, tasks)
     
     elif command == 'delete':
-        deleteTask(args[0], tasks)
+        id_task = args[0]
+        
+        tasks = delete_task(id_task, tasks)
         file_handler.write_file(file_path, tasks)
 
 

@@ -3,7 +3,7 @@ import json
 
 
 
-def write_file(data, file_path):  #✅
+def write_file(file_path, tasks):
     """ Write the contentes to the JSON file. 
     
     Input:
@@ -12,9 +12,12 @@ def write_file(data, file_path):  #✅
         None
     """
 
+    root_path = Path(__file__).resolve().parent.parent
+    file_path_ = root_path / file_path
+
     try:
-        with open(file_path, 'w', encoding="utf-8") as file:
-            json.dump(data, file)
+        with open(file_path_, "w", encoding="utf-8") as file:
+            json.dump(tasks, file)
             print(f"✅ Sucess: {file_path} written.\n")
     except Exception as ex:
         print(f"❌ Error: {ex}")
