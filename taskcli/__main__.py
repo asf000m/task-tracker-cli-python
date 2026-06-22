@@ -7,7 +7,7 @@ from taskcli import file_handler
 
 
 
-def add_task(task_name, description, tasks):
+def add_task(name_task, description, tasks):
     """ Add a new task to the list. 
     
     Input:
@@ -18,16 +18,18 @@ def add_task(task_name, description, tasks):
         - tasks: dictionary
     """
 
-    # create id number of the new task
-    new_id = len(tasks) + 1
+    # Create a new ID number for the new task.
+    ids_tasks = [int(id_task) for id_task in tasks.keys()]
+    max_id = max(ids_tasks)
+    new_id = str(max_id + 1)
     
-    # set the date and time of the task
+    # Set the date and time of the task.
     now = datetime.now().strftime('%c')    
 
-    # add a new task and its properties
+    # Add the new task and its properties to the dictionary.
     tasks[new_id] = {
-        'task_name': task_name,
         'id': new_id,
+        'task_name': name_task,
         'description': description,
         'status': 'to-do',
         'createdAt': now,
@@ -67,18 +69,18 @@ def delete_task(id, tasks):
 
 
 
-def mark_todo():
+def mark_todo(id_task):
     """ Mark a task as todo. """
     pass
 
 
-def mark_in_progress():
+def mark_in_progress(id_task):
     """ Mark a task as in progress. """
     pass
 
 
 
-def mark_done():
+def mark_done(id_task):
     """ Mark a task as done. """
     pass
 
@@ -107,9 +109,10 @@ def list_all(tasks):
 
 
 
-def listByStatus():
+def list_by_status():
     """ List tasks by status. """
-    return 0
+    
+    pass
 
 
 
@@ -118,26 +121,29 @@ def main():
     file_path = "files/tasks_test.json"
     tasks = file_handler.read_file(file_path)
 
-    # define the command and arguments
+    # Define the command and arguments.
     command = sys.argv[1]
     args = sys.argv[2:]
 
-    # check for a command and execute it
-    if command == 'list':
+    # Check for a command and execute it.
+    if command == "list":
         list_all(tasks)
     
-    elif command == 'add':
+    elif command == "add":
         name_task = args[0]
         desc_task = args[1]
-        
         tasks = add_task(name_task, desc_task, tasks)
-        file_handler.write_file(file_path, tasks)
     
-    elif command == 'delete':
+    elif command == "delete":
         id_task = args[0]
-        
         tasks = delete_task(id_task, tasks)
-        file_handler.write_file(file_path, tasks)
+    
+    elif command == "update":
+        id_task = args[0]
+        new_name = args[1]
+        tasks = update_task(id_task, new_name, tasks)
+    
+    file_handler.write_file(file_path, tasks)
 
 
 
