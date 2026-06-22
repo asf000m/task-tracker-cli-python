@@ -1,7 +1,7 @@
 import json
 from pprint import pp
 
-import file_handler
+import taskcli.src.repository as repository
 from __main__ import *
 
 
@@ -41,7 +41,7 @@ def write_file():
         }
     }
     file_name_test = "files/tasks_test.json"
-    file_handler.write_file(tasks_test, file_name_test)
+    repository.write_file(tasks_test, file_name_test)
 
     print("\n🟥 END TEST\n")
 
@@ -52,7 +52,7 @@ def write_file():
 def read_file(file_path):
     print(f"\n🟦 TEST: file_handler.py: <read_file>\n")
     
-    tasks = file_handler.read_file(file_path)
+    tasks = repository.read_file(file_path)
     
     print(type(tasks))
     pp(tasks)

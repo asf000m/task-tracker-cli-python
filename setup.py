@@ -1,12 +1,13 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
-    name = 'taskcli',
+    name = 'task-cli',
     version = '0.1.0',
-    packages = ['taskcli'],
+    packages = find_packages(where="src"),
+    package_dir = {"": "src"},
     entry_points = {
         'console_scripts': [
-            'taskcli = taskcli.__main__:main'
+            'task-cli = cli:main'
         ]
     }
 )
