@@ -1,8 +1,7 @@
 import json
 from pprint import pp
 
-import taskcli.src.repository as repository
-from __main__ import *
+import repository
 
 
 

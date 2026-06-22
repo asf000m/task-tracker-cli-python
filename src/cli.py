@@ -1,14 +1,14 @@
 import sys
 
 from services import *
-from taskcli import file_handler
+from repository import *
 
 
 
 def main():
 
     file_path = "files/tasks_test.json"
-    tasks = file_handler.read_file(file_path)
+    tasks = read_file(file_path)
 
     # Define the command and arguments.
     command = sys.argv[1]
@@ -32,7 +32,7 @@ def main():
         new_name = args[1]
         tasks = update_task(id_task, new_name, tasks)
     
-    file_handler.write_file(file_path, tasks)
+    write_file(file_path, tasks)
 
 
 
