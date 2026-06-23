@@ -40,7 +40,11 @@ def main():
 
         id_task = args[0]
         new_name = args[1]
-        tasks = update_task(id_task, new_name, tasks)
+        try:
+            new_description = args[2]
+        except Exception:
+            new_description = ""
+        tasks = update_task(id_task, new_name, new_description, tasks)
     
     write_file(file_path, tasks)
 

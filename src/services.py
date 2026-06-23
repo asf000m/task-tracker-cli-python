@@ -20,7 +20,7 @@ def add_task(name_task, description, tasks):
     new_id = str(max_id + 1)
     
     # Set the date and time of the task.
-    now = datetime.now().strftime('%c')    
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Add the new task and its properties to the dictionary.
     tasks[new_id] = {
@@ -38,10 +38,17 @@ def add_task(name_task, description, tasks):
 
 
 
-def update_task(id_task, name_task, tasks):
+def update_task(id_task, new_name, new_description, tasks):
     """ Change the task name of the task. """
     
-    
+    task = tasks[id_task]
+    task["task_name"] = new_name
+    task["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    if new_description:
+        task["description"] = new_description
+    print(f"✅ Sucess: task updated (ID: {id_task}).\n")
+
+    return tasks
 
 
 
