@@ -45,22 +45,23 @@ def update_task(id_task, name_task, tasks):
 
 
 
-def delete_task(id, tasks):
+def delete_task(id_task, tasks):
     """ Delete a task. """
 
     # First check if the ID of the task is in dictionary of tasks.
-    if id in tasks:
-        name_task = tasks[id]["task_name"]
-        id_task = tasks[id]["id"]
+    if id_task in tasks:
+        name_task = tasks[id_task]["task_name"]
+        id_task = tasks[id_task]["id"]
+        tasks.pop(id_task)
+        
         print(
             "Task deleted:\n"
             f"{name_task} (ID: {id_task})\n"
         )
-        tasks.pop(id)
         
         return tasks
     else:
-        print(f"Task ID {id} not found.\n")
+        print(f"Task ID {id_task} not found.\n")
         
         return tasks
 

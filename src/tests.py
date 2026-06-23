@@ -39,8 +39,8 @@ def write_file():
             "updatedAt": "Sun Feb  1 17:22:48 2026"
         }
     }
-    file_name_test = "files/tasks_test.json"
-    repository.write_file(tasks_test, file_name_test)
+    file_name_test = "data/tasks_test.json"
+    repository.write_file(file_name_test, tasks_test)
 
     print("\n🟥 END TEST\n")
 
