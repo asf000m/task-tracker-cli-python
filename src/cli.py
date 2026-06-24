@@ -46,6 +46,13 @@ def main():
             new_description = ""
         tasks = update_task(id_task, new_name, new_description, tasks)
     
+    elif command == "mark-in-progress":
+        if len(args) < 1:
+            print("❌ Error: Missing task ID.\n")
+        
+        id_task = args[0]
+        tasks = mark_in_progress(id_task)
+    
     write_file(file_path, tasks)
 
 

@@ -74,19 +74,26 @@ def delete_task(id_task, tasks):
 
 
 
-def mark_todo(id_task):
-    """ Mark a task as todo. """
+def mark_todo(id_task, tasks):
+    """ Change the status of a task as 'todo'. """
     pass
 
 
-def mark_in_progress(id_task):
-    """ Mark a task as in progress. """
-    pass
+def mark_in_progress(id_task, tasks):
+    """ Change the status of a task as 'in-progress'. """
+    
+    if id_task in tasks:
+        task = tasks[id_task]
+        task["status"] = "in-progress"
+    else:
+        print("❌ Error: task ID not found.\n")
+    
+    return tasks
 
 
 
-def mark_done(id_task):
-    """ Mark a task as done. """
+def mark_done(id_task, tasks):
+    """ Change the status of a task as 'done'. """
     pass
 
 

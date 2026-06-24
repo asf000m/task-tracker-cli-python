@@ -18,7 +18,7 @@ def write_file():
             "id": 0,
             "task_name": "First task", 
             "description": "This is the description of the task", 
-            "status": "todo", 
+            "status": "to-do", 
             "createdAt": "Sun Feb  1 16:35:53 2026", 
             "updatedAt": "Sun Feb  1 16:35:53 2026"
         },
@@ -26,7 +26,7 @@ def write_file():
             "id": 1, 
             "task_name": "2nd task", 
             "description": "description of 2nd task", 
-            "status": "todo", 
+            "status": "to-do", 
             "createdAt": "Sun Feb  1 17:11:04 2026", 
             "updatedAt": "Sun Feb  1 17:11:04 2026"
         },
