@@ -51,7 +51,7 @@ def main():
             print("❌ Error: Missing task ID.\n")
         
         id_task = args[0]
-        tasks = mark_in_progress(id_task)
+        tasks = mark_in_progress(id_task, tasks)
     
     write_file(file_path, tasks)
 
