@@ -46,7 +46,7 @@ def update_task(id_task, new_name, new_description, tasks):
     task["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     if new_description:
         task["description"] = new_description
-    print(f"✅ Sucess: task updated (ID: {id_task}).\n")
+    print(f"✔️ Sucess: task updated (ID: {id_task}).\n")
 
     return tasks
 
@@ -62,13 +62,13 @@ def delete_task(id_task, tasks):
         tasks.pop(id_task)
         
         print(
-            "Task deleted:\n"
+            "✔️ Sucess: Task deleted:\n"
             f"{name_task} (ID: {id_task})\n"
         )
         
         return tasks
     else:
-        print(f"Task ID {id_task} not found.\n")
+        print(f"✖️ Error: Task ID {id_task} not found.\n")
         
         return tasks
 
@@ -76,7 +76,16 @@ def delete_task(id_task, tasks):
 
 def mark_todo(id_task, tasks):
     """ Change the status of a task as 'todo'. """
-    pass
+    
+    if id_task in tasks:
+        task = tasks[id_task]
+        task["status"] = "to-do"
+        print(f"✔️ Sucess: Task marked as to-do (ID: {id_task}).\n")
+    else:
+        print("✖️ Error: Task ID not found.\n")
+    
+    return tasks
+
 
 
 def mark_in_progress(id_task, tasks):
@@ -85,8 +94,9 @@ def mark_in_progress(id_task, tasks):
     if id_task in tasks:
         task = tasks[id_task]
         task["status"] = "in-progress"
+        print(f"✔️ Sucess: Task marked as in-progress (ID: {id_task}).\n")
     else:
-        print("❌ Error: task ID not found.\n")
+        print("✖️ Error: task ID not found.\n")
     
     return tasks
 
@@ -94,7 +104,15 @@ def mark_in_progress(id_task, tasks):
 
 def mark_done(id_task, tasks):
     """ Change the status of a task as 'done'. """
-    pass
+    
+    if id_task in tasks:
+        task = tasks[id_task]
+        task["status"] = "done"
+        print(f"✔️ Sucess: Task marked as done (ID: {id_task}).\n")
+    else:
+        print("✖️ Error: Task ID not found.\n")
+    
+    return tasks
 
 
 

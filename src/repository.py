@@ -18,9 +18,9 @@ def write_file(file_path, tasks):
     try:
         with open(file_path_, "w", encoding="utf-8") as file:
             json.dump(tasks, file)
-            print(f"✅ Sucess: {file_path} written.\n")
+            print(f"✔️ Sucess: {file_path} written.\n")
     except Exception as ex:
-        print(f"❌ Error: {ex}")
+        print(f"✖️ Error: {ex}")
         exit()
 
 
@@ -41,9 +41,9 @@ def read_file(file_path):
     try:
         with open(file_path_, 'rt', encoding="utf-8") as file:
             json_to_dict = json.load(file)
-            print(f"✅ Sucess: {file_path} read.\n")
+            print(f"✔️ Sucess: {file_path} read.\n")
             
             return json_to_dict
     except Exception as ex:
-        print(f"❌ Error: {ex}")
+        print(f"✖️ Error: {ex}")
         exit()

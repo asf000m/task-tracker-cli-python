@@ -20,7 +20,7 @@ def main():
     
     elif command == "add":
         if len(args) < 2:
-            print("❌ Error: Missing task name or description.\n")
+            print("✖️ Error: Missing task name or description.\n")
             return
         
         name_task = args[0]
@@ -29,14 +29,14 @@ def main():
     
     elif command == "delete":
         if len(args) < 1:
-            print("❌ Error: Missing task ID.\n")
+            print("✖️ Error: Missing task ID.\n")
 
         id_task = args[0]
         tasks = delete_task(id_task, tasks)
     
     elif command == "update":
         if len(args) < 2:
-            print("❌ Error: Missing task ID or new name.\n")
+            print("✖️ Error: Missing task ID or new name.\n")
 
         id_task = args[0]
         new_name = args[1]
@@ -48,10 +48,24 @@ def main():
     
     elif command == "mark-in-progress":
         if len(args) < 1:
-            print("❌ Error: Missing task ID.\n")
+            print("✖️ Error: Missing task ID.\n")
         
         id_task = args[0]
         tasks = mark_in_progress(id_task, tasks)
+
+    elif command == "mark-done":
+        if len(args) < 1:
+            print("✖️ Error: Missing task ID.\n")
+        
+        id_task = args[0]
+        tasks = mark_done(id_task, tasks)
+    
+    elif command == "mark-todo":
+        if len(args) < 1:
+            print("✖️ Error: Missing task ID.\n")
+        
+        id_task = args[0]
+        tasks = mark_todo(id_task, tasks)
     
     write_file(file_path, tasks)
 
