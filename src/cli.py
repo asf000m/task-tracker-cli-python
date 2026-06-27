@@ -16,7 +16,19 @@ def main():
 
     # Check for a command and execute it.
     if command == "list":
-        list_all(tasks)
+        if len(args) < 1:
+            list_all(tasks)
+        else:
+            status_flag = args[0]
+            
+            if status_flag == "done":
+                list_by_status('done', tasks)
+            elif status_flag == "to-do":
+                list_by_status('to-do', tasks)
+            elif status_flag == "in-progress":
+                list_by_status('in-progress', tasks)
+            else:
+                print("✖️ Error: Invalid command flag.\n")
     
     elif command == "add":
         if len(args) < 2:
@@ -60,12 +72,15 @@ def main():
         id_task = args[0]
         tasks = mark_done(id_task, tasks)
     
-    elif command == "mark-todo":
+    elif command == "mark-to-do":
         if len(args) < 1:
             print("✖️ Error: Missing task ID.\n")
         
         id_task = args[0]
-        tasks = mark_todo(id_task, tasks)
+        tasks = mark_to_do(id_task, tasks)
+
+    else:
+        print("✖️ Error: Invalid command.\n")
     
     write_file(file_path, tasks)
 

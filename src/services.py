@@ -39,7 +39,16 @@ def add_task(name_task, description, tasks):
 
 
 def update_task(id_task, new_name, new_description, tasks):
-    """ Change the task name of the task. """
+    """ Change the task name of the task. 
+    
+    Input:
+        - id_task: string
+        - new_name: string
+        - new_description: string
+        - tasks: dictionary
+    Output:
+        - tasks: dictionary
+    """
     
     task = tasks[id_task]
     task["task_name"] = new_name
@@ -53,7 +62,14 @@ def update_task(id_task, new_name, new_description, tasks):
 
 
 def delete_task(id_task, tasks):
-    """ Delete a task. """
+    """ Delete a task. 
+    
+    Input:
+        - id_task: string
+        - tasks: dictionary
+    Output:
+        - tasks: dictionary
+    """
 
     # First check if the ID of the task is in dictionary of tasks.
     if id_task in tasks:
@@ -74,8 +90,15 @@ def delete_task(id_task, tasks):
 
 
 
-def mark_todo(id_task, tasks):
-    """ Change the status of a task as 'todo'. """
+def mark_to_do(id_task, tasks):
+    """ Change the status of a task as 'to-do'. 
+    
+    Input:
+        - id_task: string
+        - tasks: dictionary
+    Output:
+        - tasks: dictionary
+    """
     
     if id_task in tasks:
         task = tasks[id_task]
@@ -89,7 +112,14 @@ def mark_todo(id_task, tasks):
 
 
 def mark_in_progress(id_task, tasks):
-    """ Change the status of a task as 'in-progress'. """
+    """ Change the status of a task as 'in-progress'.
+    
+    Input:
+        - id_task: string
+        - tasks: dictionary
+    Output:
+        - tasks: dictionary
+    """
     
     if id_task in tasks:
         task = tasks[id_task]
@@ -103,7 +133,14 @@ def mark_in_progress(id_task, tasks):
 
 
 def mark_done(id_task, tasks):
-    """ Change the status of a task as 'done'. """
+    """ Change the status of a task as 'done'. 
+    
+    Input:
+        - id_task: string
+        - tasks: dictionary
+    Output:
+        - tasks: dictionary
+    """
     
     if id_task in tasks:
         task = tasks[id_task]
@@ -128,18 +165,44 @@ def list_all(tasks):
     print('List of all tasks:\n')
 
     for task in tasks.values():
-        print(
-            f"ID:\t\t{task["id"]}\n"
-            f"Task:\t\t{task["task_name"]}\n"
-            f"Description:\t{task["description"]}\n"
-            f"Status:\t\t{task["status"]}\n"
-            f"Created at:\t{task["createdAt"]}\n"
-            f"Updated at:\t{task["updatedAt"]}\n"
-        )
+        print_task(task)
 
 
 
-def list_by_status():
-    """ List tasks by status. """
+def list_by_status(status, tasks):
+    """ List tasks by status (done, to-do, or in-progress). 
     
-    pass
+    Input:
+        - status: string
+        - tasks: dictionary
+    Output:
+        - None
+    """
+    
+    for task in tasks.values():
+        if (status == "done") and (task["status"] == status):
+            print_task(task)
+        elif (status == "to-do") and (task["status"] == status):
+            print_task(task)
+        elif (status == "in-progress") and (task["status"] == status):
+            print_task(task)
+
+
+
+def print_task(task):
+    """ Print the properties of a task.
+    
+    Input:
+        - task: dictionary
+    Output:
+        - None
+    """
+
+    print(
+        f"ID:\t\t{task["id"]}\n"
+        f"Task:\t\t{task["task_name"]}\n"
+        f"Description:\t{task["description"]}\n"
+        f"Status:\t\t{task["status"]}\n"
+        f"Created at:\t{task["createdAt"]}\n"
+        f"Updated at:\t{task["updatedAt"]}\n"
+    )
